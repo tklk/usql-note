@@ -1,0 +1,16 @@
+/*************
+Job: Inline C#
+Description: Using C# function in a query
+Most IP addresses in use on the Internet belong to the InterNetwork (IPv4) family (ex: 192.0.2.1) or the InterNetworkV6 (IPv6) family (ex: 2001:db8:85a3:8d3:1319:8a2e:370:7348). In this procedure, you will use C# code to determine the IP address family of client IP addresses by examining the AddressFamily property of the Microsoft .NET System.Net.IPAddress class.
+*************/
+
+USE DATABASE webdata;
+
+@ipdetails = 
+    SELECT  DISTINCT client_ip,
+            System.Net.IPAddress.Parse(client_ip).AddressFamily.ToString() AS ipfamily
+    FROM iis.log;
+
+OUTPUT @ipdetails
+    TO "/output/ipdetails.csv"
+    USING Outputters.Csv();

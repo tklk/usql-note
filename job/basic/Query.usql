@@ -1,0 +1,23 @@
+/*************
+File Information
+File Name: 2008-01.txt
+Path: adl://<myaccpimt>.azuredatalakestore.net/iislogs/2008-01.txt
+Job: Query Log
+Description: Simple job example
+*************/
+
+// Each line in file is consider as a entry in data type of String
+@log = 
+    EXTRACT entry string
+    FROM "/iislogs/2008-01.txt"
+    USING Extractors.Text();
+
+// Exclude "#" at head by the power of C#
+@cleaned = 
+    SELECT entry
+    FROM @log
+    WHERE entry.Substring(0, 1) != "#";
+					
+OUTPUT @cleaned
+    TO "/output/cleaned.txt"
+    USING Outputters.Text();

@@ -1,0 +1,31 @@
+/*************
+Job: Create DB
+Description: Create database and table
+*************/
+
+CREATE DATABASE IF NOT EXISTS webdata;
+USE DATABASE webdata;
+
+CREATE SCHEMA IF NOT EXISTS iis;
+
+CREATE TABLE iis.log (
+    date string,
+    time string,
+    client_ip string,
+    username string,
+    server_ip string,
+    port int,
+    method string,
+    stem string,
+    query string,
+    status string,
+    server_bytes int,
+    client_bytes int,
+    time_taken int?,
+    user_agent string,
+    referrer string,
+    INDEX idx_logdate CLUSTERED (date)
+    DISTRIBUTED BY HASH(client_ip)
+);
+
+// time_taken can be null

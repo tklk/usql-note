@@ -1,0 +1,26 @@
+/*************
+Job: Create Table-Valued Function
+ Description: Create table-valued function, which is similar to view but with customize parameters
+*************/
+
+USE DATABASE webdata;
+
+CREATE FUNCTION iis.summarizelog(@Year int, @Month int)
+RETURNS @summarizedlog TABLE
+(
+    date string,
+    hits long?,
+    bytes_sent long?,
+    bytes_received long?
+)
+AS
+BEGIN
+    @summarizedlog =
+        SELECT date,
+                hits,
+                bytes_sent,
+                bytes_received
+        FROM iis.summary
+        WHERE   DateTime.Parse(date).Year == @Year AND 
+                DateTime.Parse(date).Month == @Month;
+END;

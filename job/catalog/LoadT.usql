@@ -1,0 +1,28 @@
+/*************
+Job: Load table
+ Description: Load data from storage into table in selected database
+*************/
+
+USE DATABASE webdata;
+
+@log =
+    EXTRACT date string,
+            time string,
+            client_ip string,
+            username string,
+            server_ip string,
+            port int,
+            method string,
+            stem string,
+            query string,
+            status string,
+            server_bytes int,
+            client_bytes int,
+            time_taken int?,
+            user_agent string,
+            referrer string
+    FROM "/iislogs/{*}.txt"
+    USING Extractors.Text(' ', silent:true);
+
+INSERT INTO iis.log
+SELECT * FROM @log;

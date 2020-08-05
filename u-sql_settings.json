@@ -1,0 +1,24 @@
+{
+    "defaultContext": {
+        "account": "",
+        "database": "master",
+        "schema": "dbo"
+    },
+    "scripts": [
+        {
+            "path": "c# in u-sql/productcounts.usql",
+            "account": "",
+            "database": "",
+            "schema": "",
+            "optionalSettings": {
+                "runtimeVersion": "",
+                "priority": "",
+                "degreeOfParallelism": "",
+                "jobInformationOutputPath": ""
+            },
+            "codeBehindFiles": [
+                ".../ProductCounts.usql.cs"
+            ]
+        }
+    ]
+}

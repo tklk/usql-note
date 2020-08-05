@@ -1,0 +1,32 @@
+/*************
+File Information
+File Name: 2008-01.txt
+Path: adl://<myaccpimt>.azuredatalakestore.net/iislogs/2008-01.txt
+Job: Schema on Read
+Description: Applying schema on reading file
+*************/
+
+@log = 
+    EXTRACT date string,
+            time string,
+            client_ip string,
+            username string,
+            server_ip string,
+            port int,
+            method string,
+            stem string,
+            query string,
+            status string,
+            server_bytes int,
+            client_bytes int,
+            time_taken int,
+            user_agent string,
+            referrer string
+    FROM "/iislogs/2008-01.txt"
+    USING Extractors.Text(' ', silent:true);
+    // silent:true 
+	// :: If job find a row it can not implement with this schema, it will skip it
+
+OUTPUT @log
+    TO "/output/log.csv"
+    USING Outputters.Csv();

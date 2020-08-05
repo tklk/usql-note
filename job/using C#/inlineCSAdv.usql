@@ -1,0 +1,20 @@
+ /*************
+Job: Advance Inline C#
+Description: Using complex C# expression in a query
+*************/
+
+USE DATABASE webdata;
+@paramstrings =
+    SELECT stem AS page,
+            new SQL.ARRAY<string>( query.Split('&').Where(x => x.Contains("=")) ) AS paramstrings
+    FROM iis.log;
+
+@params =
+    SELECT DISTINCT page, param
+    FROM @paramstrings
+    CROSS APPLY EXPLODE(paramstrings) AS t(param);
+
+OUTPUT @params
+    TO "/output/params.csv"
+    ORDER BY page, param
+    USING Outputters.Csv();

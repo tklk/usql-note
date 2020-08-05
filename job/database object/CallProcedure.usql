@@ -1,0 +1,7 @@
+/*************
+Job: Call Procedure
+Description: Call procedure
+*************/
+
+// Upload file into Azure Data Lake Store before running the call
+[webdata].[iis].[LoadLog]("/iislogs/2008-07.txt");

@@ -1,0 +1,15 @@
+/*************
+Job: Create View
+Description: Create view
+*************/
+
+USE DATABASE webdata;
+
+CREATE VIEW iis.summary
+AS
+SELECT  date,
+        COUNT(*) AS hits,
+        SUM(server_bytes) AS bytes_sent,
+        SUM(client_bytes) AS bytes_received
+FROM iis.log
+GROUP BY date;

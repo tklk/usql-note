@@ -1,0 +1,13 @@
+/*************
+Job: Query Table-Valued Function
+  Description: Load table-valued function result
+*************/
+
+USE DATABASE webdata;
+
+@june = iis.summarizelog(2008, 6);
+
+OUTPUT @june
+    TO "/Outputs/june.csv"
+    ORDER BY date
+    USING Outputters.Csv();

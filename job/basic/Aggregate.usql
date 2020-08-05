@@ -1,0 +1,40 @@
+/*************
+File Information
+File Name: 2008-01.txt
+Path: adl://<myaccpimt>.azuredatalakestore.net/iislogs/2008-01.txt
+Job: Aggregating Data
+Description: Aggregate data like SQL
+*************/
+
+@log = 
+    EXTRACT date string,
+            time string,
+            client_ip string,
+            username string,
+            server_ip string,
+            port int,
+            method string,
+            stem string,
+            query string,
+            status string,
+            server_bytes int,
+            client_bytes int,
+            time_taken int,
+            user_agent string,
+            referrer string
+    FROM "/iislogs/{*}.txt"
+    USING Extractors.Text(' ', silent:true);
+    // * wildcard, get all file
+
+@dailysummary = 
+    SELECT  date,
+            COUNT(*) AS hits,
+            SUM(server_bytes) AS bytes_sent,
+            SUM(client_bytes) AS bytes_received
+    FROM @log
+    GROUP BY date;
+
+OUTPUT @dailysummary
+    TO "/output/six_month_summary.csv"
+    ORDER BY date
+    USING Outputters.Csv();

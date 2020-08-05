@@ -1,0 +1,18 @@
+/*************
+Job: Call Custom Assembly
+Description: Using the custom class in query
+*************/
+
+USE DATABASE webdata;
+
+REFERENCE ASSEMBLY DataUtilities;
+
+@kb =
+    SELECT  date,
+            DataUtilities.Convertor.BytesToKb(bytes_received) AS kb_received 
+    FROM iis.summary;
+
+ OUTPUT @kb
+    TO "/output/kb.csv"
+    ORDER BY date
+    USING Outputters.Csv();

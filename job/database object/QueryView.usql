@@ -1,0 +1,13 @@
+/*************
+Job: Query View
+Description: Get view
+*************/
+
+@view = 
+    SELECT * 
+    FROM [webdata].[iis].[summary];
+
+OUTPUT @view
+    TO "/Outputs/webdata.iis.summary.tsv"
+    ORDER BY date
+    USING Outputters.Tsv();

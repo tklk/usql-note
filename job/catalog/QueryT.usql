@@ -1,0 +1,14 @@
+/*************
+Job: Query table
+ Description: Get tableview
+*************/
+
+@table = 
+    SELECT * 
+    FROM [webdata].[iis].[log]
+    ORDER BY date, time
+    FETCH FIRST 100;
+
+OUTPUT @table
+    TO "/Outputs/webdata.iis.log.tsv"
+    USING Outputters.Tsv();

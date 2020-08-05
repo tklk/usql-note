@@ -1,0 +1,13 @@
+/*************
+Job: Check Procedure
+Description: Check procedure result
+*************/
+
+USE DATABASE webdata;
+
+@july = iis.summarizelog(2008, 7);
+
+OUTPUT @july
+    TO "/Outputs/july.csv"
+    ORDER BY date
+    USING Outputters.Csv();

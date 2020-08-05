@@ -1,0 +1,7 @@
+usqlCodeBehindReference
+usqlCodeBehindGenerated
+obj
+
+*.csproj
+*.cache
+*.Rhistory
