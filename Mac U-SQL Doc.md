@@ -1,6 +1,6 @@
-## Mac U-SQL Documentation - Using U-SQL in Visual Studio Code
-<a name="https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-data-lake-tools-for-vscode"></a>
-# Use Azure Data Lake Tools for VSC
+# Mac U-SQL Documentation - Using U-SQL in Visual Studio Code
+
+### <a href="https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-data-lake-tools-for-vscode">Use Azure Data Lake Tools for VSC</a>
 * To compile a U-SQL script
     * ADL: Compile Script
 * To submit a U-SQL script
@@ -18,6 +18,5 @@
 * To create an extraction script
     * ADL: Create EXTRACT Script
 
-<a name="https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-u-sql-develop-with-python-r-csharp-in-vscode"></a>
-# Develop U-SQL with Python, R, and C# for Azure Data Lake Analytics in VSC
+### <a name="https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-u-sql-develop-with-python-r-csharp-in-vscode">Develop U-SQL with Python, R, and C# for Azure Data Lake Analytics in VSC</a>
 * ADL: Generate CS Code Behind File
